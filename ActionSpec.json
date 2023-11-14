@@ -1,0 +1,202 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Home Assistant",
+    "description": "Integrates Home Assistant",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "{{baseUrl}}"
+    }
+  ],
+  "paths": {
+    "/api/": {
+      "get": {
+        "description": "Check if API is available",
+        "operationId": "CheckAPI",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "API is available"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/states/{entityId}": {
+      "get": {
+        "description": "Check entity state",
+        "operationId": "CheckEntity",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "description": "ID of the entity to check",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "deprecated": false
+      }
+    },    
+    "/api/services/light/turn_on": {
+      "post": {
+        "description": "Turn on a light device",
+        "operationId": "TurnOnLight",
+        "x-openai-isConsequential": false,
+        "requestBody": {
+          "description": "Options for turning on the light, including color attributes",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entity_id": {
+                    "type": "string"
+                  },
+                  "color_temp": {
+                    "type": "integer",
+                    "description": "Color temperature in Kelvin"
+                  },
+                  "hs_color": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "Hue and saturation color value"
+                  },
+                  "rgb_color": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "description": "RGB color value"
+                  },
+                  "rgbw_color": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "description": "RGBW color value"
+                  },
+                  "rgbww_color": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    },
+                    "description": "RGBWW color value"
+                  },
+                  "xy_color": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    },
+                    "description": "XY color value"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Light turned on successfully"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/services/light/turn_off": {
+      "post": {
+        "description": "Turn off a light device",
+        "operationId": "TurnOffLight",
+        "x-openai-isConsequential": false,
+        "requestBody": {
+          "description": "Entity ID of the light to be turned off",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entity_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Light turned off successfully"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/services/automation/trigger": {
+      "post": {
+        "description": "Trigger an automation",
+        "operationId": "TriggerAutomation",
+        "x-openai-isConsequential": false,
+        "requestBody": {
+          "description": "Entity ID of the automation to be run.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "entity_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Automation triggered successfully"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
