@@ -14,6 +14,17 @@ Home Assistant GPT is a custom GPT assistant that interfaces with the Home Assis
 - **Weather Updates**: Get summaries and recommendations based on the weather.
 - **Customizable Entity List**: Tailor the GPT to your specific Home Assistant setup.
 
+## Example in action
+
+Here's an example of the GPT calling an automation to turn on the TV in my house.
+
+![TV Time](tvtime.png)
+
+You can see on the data shared that it determined the correct automation to run, just from the name.
+
+![Data sent](servicecall.png)
+
+
 ## Setup Instructions
 
 1. **GPT Initialization**:
