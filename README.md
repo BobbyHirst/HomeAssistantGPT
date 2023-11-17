@@ -7,6 +7,7 @@ Home Assistant GPT is a custom GPT assistant that interfaces with the Home Assis
 
 - A ChatGPT Plus account
 - Your Home Assistant instance must be web facing.
+- You will need to enable the Home Assistant REST API - https://developers.home-assistant.io/docs/api/rest/
 
 ## Features
 - **Device Control**: Interact with lights and automations.
